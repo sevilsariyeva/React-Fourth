@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Display from "./Display";
+import Form from "./Form";
+import { useState } from "react";
 
 function App() {
+  const [items, setItems] = useState([]);
+  const addItem = (newItem) => {
+    setItems((prevItems) => [...prevItems, newItem]); // Use functional update form
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* Pass addItem as a prop to Form */}
+      <Form onAdd={addItem} />
+      {/* Pass items as a prop to Display */}
+      <Display items={items} />
     </div>
   );
 }
